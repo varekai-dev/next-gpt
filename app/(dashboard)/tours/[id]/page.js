@@ -19,6 +19,7 @@ const SingleTourPage = async ({ params }) => {
 	// 	city: tour.city,
 	// 	country: tour.country,
 	// })
+
 	const { data } = await axios.get(`${url}${tour.city}`)
 	const tourImage = data?.results[0]?.urls?.raw
 	return (
