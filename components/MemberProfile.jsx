@@ -1,8 +1,12 @@
+import { fetchOrGenerateTokens } from '@/utils/action.js'
+import prisma from '@/utils/db.js'
 import { UserButton } from '@clerk/nextjs'
-import { currentUser } from '@clerk/nextjs/server'
+import { auth, currentUser } from '@clerk/nextjs/server'
 
 const MemberProfile = async () => {
 	const user = await currentUser()
+	const { userId } = auth()
+	await fetchOrGenerateTokens(userId)
 
 	return (
 		<div className="px-4 flex items-center gap-2">
